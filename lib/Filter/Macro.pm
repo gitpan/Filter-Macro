@@ -1,5 +1,5 @@
 package Filter::Macro;
-$Filter::Macro::VERSION = '0.01';
+$Filter::Macro::VERSION = '0.02';
 
 use strict;
 use Filter::Simple sub {
@@ -25,12 +25,17 @@ use Filter::Simple sub {
 
 Filter::Macro - Make macro modules that are expanded inline
 
+=head1 VERSION
+
+This document describes version 0.02 of Filter::Macro, released
+July 21, 2004.
+
 =head1 SYNOPSIS
 
 In F<MyHandyModules.pm>:
 
     package MyHandyModules;
-    use Filter::Macro';
+    use Filter::Macro;
     # lines below will be expanded into caller's code
     use strict;
     use warnings;
@@ -44,12 +49,12 @@ In your program or module:
 
 =head1 DESCRIPTION
 
-If many of your programs begin with the same six or ten lines, it may make
-sense to abstract them away into a module, and C<use> that module instead.
+If many of your programs begin with the same lines, it may make sense to
+abstract them away into a module, and C<use> that module instead.
 
-Sadly, it does not work that way, because all lexical pragmas, source filters,
-subroutines etc defined in F<MyHandyModules.pm> takes effect in that module,
-I<not> the original program with C<use MyHandyModules;>.
+Sadly, it does not work that way, because by default, all lexical pragmas,
+source filters and subroutine imports invoked in F<MyHandyModules.pm> takes
+effect in that module, I<not> the calling programs.
 
 One way to solve this problem is to use B<Filter::Include>:
 
@@ -64,12 +69,12 @@ line in F<MyHandyModules.pm>, after the C<package MyHandyModules;> line:
 
     use Filter::Macro;
 
-With this, any program or module that says C<use Filter::Macro> will
-expand everything below C<use Filter::Macro> into their own code, instead
-of the default semantic of evaluating them in the C<MyHandyModules> package.
+With this, a program or module that says C<use Filter::Macro> will expand
+lines below C<use Filter::Macro> into their own code, instead of the default
+semantic of evaluating them in the C<MyHandyModules> package.
 
-Line numbers in error and warning messages are unaffected by this semantic
-change; they still point to the correct file name and line numbers.
+Line numbers in error and warning messages are unaffected by this module;
+they still point to the correct file name and line numbers.
 
 =head1 SEE ALSO
 
@@ -80,7 +85,7 @@ L<Filter::Include>, L<Filter::Simple>
 Autrijus Tang E<lt>autrijus@autrijus.orgE<gt>
 
 Based on Damian Conway's concept, covered in his excellent I<Sufficiently
-Advanced Technology> talk.
+Advanced Technologies> talk.
 
 =head1 COPYRIGHT
 
