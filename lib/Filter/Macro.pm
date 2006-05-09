@@ -1,12 +1,12 @@
 package Filter::Macro;
-$Filter::Macro::VERSION = '0.02';
+$Filter::Macro::VERSION = '0.10';
 
 use strict;
-use Filter::Simple sub {
+use Filter::Simple::Cached sub {
     $_ = quotemeta($_);
     s/\\\n/\n/g;
     $_ = sprintf(q(
-        use Filter::Simple sub {
+        use Filter::Simple::Cached sub {
             $_ = join("\n",
                 '#line '.(__LINE__+1).' '.__FILE__,
                 "%s",
@@ -15,8 +15,7 @@ use Filter::Simple sub {
             );
         };
         1;
-    ), $_, (caller(2))[2]+1, (caller(2))[1]);
-    tr/\n//d;
+    ), $_, (caller(6))[2]+1, (caller(6))[1]);
 };
 
 1;
@@ -27,8 +26,8 @@ Filter::Macro - Make macro modules that are expanded inline
 
 =head1 VERSION
 
-This document describes version 0.02 of Filter::Macro, released
-July 21, 2004.
+This document describes version 0.10 of Filter::Macro, released
+May 5, 2006.
 
 =head1 SYNOPSIS
 
@@ -78,22 +77,34 @@ they still point to the correct file name and line numbers.
 
 =head1 SEE ALSO
 
-L<Filter::Include>, L<Filter::Simple>
+L<Filter::Include>, L<Filter::Simple::Cached>
 
 =head1 AUTHORS
 
-Autrijus Tang E<lt>autrijus@autrijus.orgE<gt>
+Audrey Tang E<lt>cpan@audreyt.orgE<gt>
 
 Based on Damian Conway's concept, covered in his excellent I<Sufficiently
 Advanced Technologies> talk.
 
-=head1 COPYRIGHT
+=head1 COPYRIGHT (The "MIT" License)
 
-Copyright 2004 by Autrijus Tang E<lt>autrijus@autrijus.orgE<gt>.
+Copyright 2004, 2006 by Audrey Tang E<lt>cpan@audreyt.orgE<gt>.
 
-This program is free software; you can redistribute it and/or 
-modify it under the same terms as Perl itself.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is fur-
+nished to do so, subject to the following conditions:
 
-See L<http://www.perl.com/perl/misc/Artistic.html>
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FIT-
+NESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE X
+CONSORTIUM BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 =cut

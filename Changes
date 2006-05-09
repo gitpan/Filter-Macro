@@ -1,14 +1,13 @@
-----------------------------------------------------------------------
-r6198:  autrijus | 2004-07-21T19:33:31.193182Z
+[Changes for 0.10 - 2006-05-09]
 
-* This be 0.02.
+* Switched to be based on Filter::Simple::Compile, a drop-in
+  replacement powered by Module::Compile to provide cached
+  filtering.
+
+[Changes for 0.02 - 2004-07-21]
+
 * Many typo fixes and clarifications in POD.
-----------------------------------------------------------------------
-r6197:  autrijus | 2004-07-21T19:28:58.819291Z
 
-* gah, typo.
-----------------------------------------------------------------------
-r6194:  autrijus | 2004-07-21T19:24:34.802927Z
+[Changes for 0.01 - 2004-07-21]
 
-* Filter::Macro 0.01, first CPAN release.
-----------------------------------------------------------------------
+* First CPAN release.

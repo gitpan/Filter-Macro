@@ -1,12 +1,13 @@
-name: Filter-Macro
-version: 0.02
 abstract: Make macro modules that are expanded inline
-author: Autrijus Tang <autrijus@autrijus.org>
-license: perl
+author: Audrey Tang <cpan@audreyt.org>
 distribution_type: module
-requires:
-  Filter::Simple: 0
-no_index:
-  directory:
+generated_by: Module::Install version 0.62
+license: MIT
+name: Filter-Macro
+no_index: 
+  directory: 
     - inc
-generated_by: Module::Install version 0.35
+    - t
+requires: 
+  Filter::Simple::Cached: 0
+version: 0.10
