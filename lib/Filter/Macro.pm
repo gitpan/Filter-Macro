@@ -1,12 +1,12 @@
 package Filter::Macro;
-$Filter::Macro::VERSION = '0.10';
+$Filter::Macro::VERSION = '0.11';
 
 use strict;
-use Filter::Simple::Cached sub {
+use Filter::Simple::Compile sub {
     $_ = quotemeta($_);
     s/\\\n/\n/g;
     $_ = sprintf(q(
-        use Filter::Simple::Cached sub {
+        use Filter::Simple::Compile sub {
             $_ = join("\n",
                 '#line '.(__LINE__+1).' '.__FILE__,
                 "%s",
@@ -26,8 +26,8 @@ Filter::Macro - Make macro modules that are expanded inline
 
 =head1 VERSION
 
-This document describes version 0.10 of Filter::Macro, released
-May 5, 2006.
+This document describes version 0.11 of Filter::Macro, released
+May 11, 2006.
 
 =head1 SYNOPSIS
 

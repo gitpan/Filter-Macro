@@ -9,5 +9,5 @@ no_index:
     - inc
     - t
 requires: 
-  Filter::Simple::Cached: 0
-version: 0.10
+  Filter::Simple::Compile: 0
+version: 0.11
